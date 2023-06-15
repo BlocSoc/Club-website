@@ -5,7 +5,7 @@ const Blog = require('../models/Blogs');
 // Route: POST /blogs
 // Description: Save a blog in the database
 router.post('/blogs', async (req, res) => {
-  const { name, email, title, blog } = req.body;
+  const { name, email, title, blog, blogLink } = req.body;
 
   try {
     const newBlog = new Blog({
@@ -13,6 +13,7 @@ router.post('/blogs', async (req, res) => {
       email,
       title,
       blog,
+      blogLink
     });
 
     await newBlog.save();

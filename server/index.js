@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 })
 app.use('/api/auth', require('./Routes/Auth'));
 app.use('/api/blog', require('./Routes/Blog'));
+app.use('/api/events', require('./Routes/Event.js'));
 
 
 app.listen(port, () => {

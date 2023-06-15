@@ -2,10 +2,9 @@ const mongoose = require('mongoose')
 
 const { Schema } = mongoose;
 
-const BlogSchema = new Schema({
+const EventSchema = new Schema({
     id: {
         type: String,
-        default: mongoose.Types.ObjectId().toHexString(),
         unique: true,
       },
     name:{
@@ -20,15 +19,11 @@ const BlogSchema = new Schema({
         type:String,
         required:true
     },
-    blog:{
+    description:{
         type:String,
         required:true
-    },
-    blogLink:{
-        type:String,
-        required:false
     }
-
+    
   });
 
-  module.exports = mongoose.model('blog',BlogSchema)
+  module.exports = mongoose.model('event',EventSchema)
