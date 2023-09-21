@@ -7,6 +7,8 @@ var jwt = require('jsonwebtoken');
 const axios = require('axios')
 const fetch = require('../middleware/fetchdetails');
 const jwtSecret = "HaHa"
+
+
 router.post('/createuser', [
     body('email').isEmail(),
     body('password').isLength({ min: 5 }),

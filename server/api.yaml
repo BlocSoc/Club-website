@@ -1,0 +1,273 @@
+openapi: 3.0.0
+info:
+  title: Code Improve API
+  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 1.0
+
+servers:
+  - url: http://localhost:5000/
+    description: Local server
+
+components:
+  securitySchemes:
+    ApiTokenss:
+      type: http
+      scheme: bearer
+
+    ApiKey:
+      type: apiKey
+      in: header
+      name: apikey
+
+paths:
+  #-------------------------------- Blog APIS----------------------------------------------------------------
+
+  /api/blog/blogs:
+    get:
+      summary: Get all Blogs
+      tags:
+        - Blog_Api
+      responses:
+        "200":
+          description: Successful response
+    post:
+      summary: Store a blog in db
+      tags:
+       - Blog_Api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                name:
+                  type: string
+                title:
+                  type: string
+                blog:
+                  type: string
+                blogLink:
+                  type: string
+              example:
+                email: "test123567@gmail.com"
+                name: "TesterFromSwagger"
+                title: "how to be consistent part 8"
+                blog: "Lorem ipsum gipsum torem Lorem ipsum gipsum torem Lorem ipsum gipsum torem Lorem ipsum gipsum torem Lorem ipsum gipsum toremLorem ipsum"
+                blogLink: "linktomyfullblog@123.com"
+      responses:
+        "201":
+          description: Successfully Added to DB
+      
+  /api/blog/getBlog:
+    post:
+      summary: Get a Blog by id
+      tags:
+        - Blog_Api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+              example:
+                id: "6485f42adc568690b161b0d7"
+      responses:
+        "200":
+          description: Successful response
+
+  /api/blog/removeBlog:
+    delete:
+      summary: Delete a Blog by id
+      tags:
+        - Blog_Api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+              example:
+                id: "650c94cdfe8ef8e8ccce03d1"
+    responses:
+      "204":
+        description: Blog successfully deleted
+      "404":
+        description: Blog not found
+
+
+  #----------------------------- Event APIS----------------------------------------------------------------
+
+  /api/events/events:
+    get:
+      summary: Get all Events
+      tags:
+        - Event_Api
+      responses:
+        "200":
+          description: Successful response
+
+  /api/events/addEvent:
+    post:
+      summary: Store an event in db
+      tags:
+       - Event_Api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                name:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+              example:
+                email: "test123567@gmail.com"
+                name: "TesterFromSwagger"
+                title: "Event 8"
+                description: "Lorem ipsum gipsum torem Lorem ipsum gipsum torem Lorem ipsum gipsum torem Lorem ipsum gipsum torem Lorem ipsum gipsum toremLorem ipsum"
+      responses:
+        "201":
+          description: Successfully Added to DB
+ 
+
+  /api/events/getEvent:
+    post:
+      summary: Get an Event by id
+      tags:
+        - Event_Api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+              example:
+                id: "648af1b8b766662be131a8e5"
+      responses:
+        "200":
+          description: Successful response
+
+  /api/blog/removeEvent:
+    delete:
+      summary: Delete an Event by id
+      tags:
+        - Event_Api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+              example:
+                id: "650c94cdfe8ef8e8ccce03d1"
+    responses:
+      "204":
+        description: Event successfully deleted
+      "404":
+        description: Event not found
+
+
+  #----------------------------- Auth APIS----------------------------------------------------------------
+
+  /api/auth/createuser:
+    post:
+      summary: Create a user
+      tags:
+       - User_Api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                name:
+                  type: string
+                password:
+                  type: string
+              example:
+                email: "test15686@gmail.com"
+                name: "TesterFromSwagger"
+                password: "test"
+      responses:
+        "201":
+          description: Successfully Added to DB
+ 
+
+  /api/auth/login:
+    post:
+      summary: Login a user
+      tags:
+       - User_Api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              example:
+                email: "test15686@gmail.com"
+                password: "test"
+      responses:
+        "201":
+          description: User Logged in successfully
+        "400":
+          description: User not found
+ 
+  /api/auth/getUserByEmail:
+    post:
+      summary: Find a user
+      tags:
+       - User_Api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              example:
+                email: "postmantest1@gmail.com"
+      responses:
+        "201":
+          description: Successfull
+        "400":
+          description: Not Found
+ 
+
+
+          
+
+
+
+
