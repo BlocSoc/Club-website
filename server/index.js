@@ -7,9 +7,11 @@ global.dbData = require('./db')(function call(err, data, CatData) {
 
 //------------------------------------IMPORTING HEADERS----------------------------
 const express = require('express')
-const app = express()
+const { swaggerServe, swaggerSetup } = require('./config/swaggerConfig')
 
+const app = express()
 const port = 5000
+app.use("/api-docs", swaggerServe, swaggerSetup); 
 
 //----------------------------------APP USE STATEMENTS------------------------------
 
@@ -22,6 +24,30 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.json())
+
+
+// const options = {
+//   definition: {
+//     openai:'3.0.0',
+//     info: {
+//       title:"BlocSoc Backend Documentation",
+//       version:"1.0.0"
+//     },
+//     servers:[
+//       {
+//         api:"http://localhost:5000/"
+//       }
+//     ]
+//   },
+//   apis: ["./routes/*.js"],
+// }
+
+// const specs = swaggerJSDoc(options);
+// app.use(
+//   "/api-docs",
+//   swaggerUi.serve,
+//   swaggerUi.setup(specs)
+// );
 
 
 
